@@ -1,9 +1,14 @@
 package org.eth.week5.exercises.example;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.events.LinkEnterEvent;
 import org.matsim.api.core.v01.events.LinkLeaveEvent;
 import org.matsim.api.core.v01.events.handler.LinkEnterEventHandler;
 import org.matsim.api.core.v01.events.handler.LinkLeaveEventHandler;
+import org.matsim.api.core.v01.population.Person;
 
 // we want to analyze link enter and link leave events
 // so we implement two interfaces that will allow us to capture two types of events
@@ -13,17 +18,19 @@ public class CounterEventHandler implements LinkEnterEventHandler, LinkLeaveEven
 	private int counterEnter = 0;
 	private int counterLeave = 0;
 
+	Map<Id<Person>, Double> startTimes = new HashMap<>();
+	
 	@Override
 	public void handleEvent(LinkLeaveEvent event) {
 		if(event.getTime() > 0.0) {
-			counterEnter++;
+			counterLeave++;
 		}
 	}
 
 	@Override
 	public void handleEvent(LinkEnterEvent event) {
 		if(event.getTime() > 0.0) {
-			counterLeave++;
+			counterEnter++;
 		}
 	}
 
@@ -40,5 +47,6 @@ public class CounterEventHandler implements LinkEnterEventHandler, LinkLeaveEven
 	public int getCounterLeave() {
 		return counterLeave;
 	}
+
 
 }

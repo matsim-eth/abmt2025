@@ -18,9 +18,7 @@ public class RunSimulationWithEvents {
 		
 		CounterEventHandler counter = new CounterEventHandler();
 		ControllerListener listener = new ControllerListener(counter);
-		controller.addControlerListener(listener);
-		controller.getEvents().addHandler(counter);
-		
+		controller.addControlerListener(listener);		
 		
 		controller.run();
 
