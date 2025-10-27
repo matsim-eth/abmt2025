@@ -1,9 +1,9 @@
 package org.eth.week6.exercises.matsiminjection;
 
-import org.eth.week4.exercises.counter.MyEventHandler;
-import org.eth.week7.lectures.Link;
-import org.eth.week7.lectures.LinkProvider;
-import org.eth.week7.lectures.Network;
+import org.eth.week5.exercises.example.CounterEventHandler;
+import org.eth.week6.exercises.generalinjection.example1.Link;
+import org.eth.week6.exercises.generalinjection.example1.LinkProvider;
+import org.eth.week6.exercises.generalinjection.example1.Network;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.AbstractModule;
@@ -61,14 +61,14 @@ public class RunMatsimInjection {
 				// in this way we tell MATSim that it should pass events to this event handler
 				
 				// Option 1
-				// this.addEventHandlerBinding().to(MyEventHandler.class);
+				// this.addEventHandlerBinding().to(CounterEventHandler.class);
 				// if we do not bind this as a Singleton MATSim will create two instances of
 				// this class
 				// first time when it is added as EventHandler in MATSim
 				// and second time when it is needed in the MyControlerListener
 				// the second one will not be registered as an EventHandler in MATSim and
 				// event will not be passed to it
-				// bind(MyEventHandler.class).asEagerSingleton();
+				// bind(CounterEventHandler.class).asEagerSingleton();
 
 				// as an alternative we can provide an EventHandler using a Provider
 				// we should also ensure it is provided as a singleton
@@ -76,7 +76,7 @@ public class RunMatsimInjection {
 				
 				// Option 2
 				// this.addEventHandlerBinding().to(MyEventHandler.class);
-				// bind(MyEventHandler.class).toProvider(MyEventHandlerProvider.class).asEagerSingleton();
+				// bind(MyEventHandler.class).toProvider(CounterEventHandlerProvider.class).asEagerSingleton();
 
 				// now we also need to tell MATSim that it should use our MyControlerListener
 				// this.addControllerListenerBinding().to(ControllerListenerInjectionV1.class);

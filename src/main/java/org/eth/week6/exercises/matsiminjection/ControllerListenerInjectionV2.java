@@ -27,11 +27,11 @@ public class ControllerListenerInjectionV2 implements StartupListener, Iteration
 	// it is responsible to send events to all event handlers
 
 	@Inject
-	public ControllerListenerInjectionV2(Scenario scenario, CounterEventHandler myEventHandler, EventsManager eventsManager) {
+	public ControllerListenerInjectionV2(Scenario scenario, CounterEventHandler eventHandler, EventsManager eventsManager) {
 		enterEvents = new int[scenario.getConfig().controller().getLastIteration() + 1];
 		leaveEvents = new int[scenario.getConfig().controller().getLastIteration() + 1];
 		this.scenario = scenario;
-		this.eventHandler = myEventHandler;
+		this.eventHandler = eventHandler;
 		this.eventsManager = eventsManager;
 
 	}
