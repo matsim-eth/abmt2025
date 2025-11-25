@@ -26,6 +26,7 @@ public class AddBikeVehicles {
         VehicleType bikeType = VehicleUtils.createVehicleType(Id.create("bike", VehicleType.class));
         bikeType.setMaximumVelocity(16.67); // can define yours based on your scenario
         bikeType.setPcuEquivalents(0.25); // can define yours
+        bikeType.getCapacity().setSeats(1);
         vehicles.addVehicleType(bikeType);
 
         if (!vehicles.getVehicleTypes().containsKey(bikeType.getId())) {
@@ -39,8 +40,11 @@ public class AddBikeVehicles {
             if (person.getId().toString().contains("freight")){
                 continue;
             }
-            Vehicle bikeVehicle = VehicleUtils.createVehicle(Id.createVehicleId(person.getId()), bikeType);
+            Id<Vehicle> vehicle_id = Id.createVehicleId(person.getId().toString()+ ":" + "bike");
+            Vehicle bikeVehicle = VehicleUtils.createVehicle(vehicle_id, bikeType);
+            bikeVehicle.getAttributes().putAttribute("euro", 6);
             vehicles.addVehicle(bikeVehicle);
+            
         }
 
         new MatsimVehicleWriter(vehicles).writeFile(outputVehiclesFile);
